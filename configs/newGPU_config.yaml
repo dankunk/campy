@@ -1,0 +1,40 @@
+# This beginner-level config uses the CPU (gpuID: -1) to compress video
+# using ffmpeg's X264 codec
+
+# Recording parameters
+videoFolder: "../campy_videos/chunk-tests/" # this will place a new folder 1 up from the campy directory in the nalam_lab user_directory to prevent having large files in our git repo
+videoFilename: "24h_test_1_1hrchunklength.mp4"
+frameRate: 60
+# testing hour long videos with h265 level of 30.
+recTimeInSec: 86400
+chunkLengthInSec: 3600
+
+# Camera parameters
+numCams: 1
+cameraMake: "flir"
+cameraExposureTimeInUs: 14862
+# still having the issues with frame height and width though... True frame heights are 2048x1536 for this model
+frameHeight: 1536
+frameWidth: 1536
+cameraGain: 2.8
+disableGamma: False
+gammaLevel: 2
+
+
+# Flir settings
+cameraSettings: "UserSet1"
+
+
+# Compression parameters
+gpuID: 0
+pixelFormatInput: "gray"
+pixelFormatOutput: "rgb0"                          
+gpuMake: "nvidia"                     # "nvidia", "amd", "intel"                  
+codec: "h265"                         # "h264", "h265", or user-defined video codec
+quality: 30                          # 0-55
+ffmpegLogLevel: "quiet"               # "quiet", "warning", "info"
+# ffmpegPath: "/usr/bin/ffmpeg"       # Location of ffmpeg binary if not using Anaconda
+
+
+# Display parameters
+displayFrameRate: 10
