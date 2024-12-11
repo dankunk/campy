@@ -20,7 +20,7 @@ def DrawFigure(num):
 	plt.ion()
 
 	imageWindow = ax.imshow(np.zeros((1,1,3), dtype='uint8'), 
-		interpolation='none')
+		interpolation='none',cmap='gray',vmin=0,vmax=255)
 
 	figure.canvas.draw()
 	plt.show(block=False)

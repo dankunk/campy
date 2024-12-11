@@ -25,6 +25,7 @@ def CampyParams():
 	params["cameraGain"] = 1
 	params["disableGamma"] = True
 	params["cameraTrigger"] = "Line3"
+	params["gammaLevel"] = 1
 
 	# Compression default parameters
 	params["gpuID"] = [0,0,0]

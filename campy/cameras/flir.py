@@ -138,11 +138,11 @@ def GetFrameID(chunkData):
 
 def DisplayImage(cam_params, dispQueue, grabResult):
 	try:
-		if cam_params["pixelFormatInput"] == "bayer_rggb8" \
-		or cam_params["pixelFormatInput"] == "bayer_bggr8" \
-		or cam_params["pixelFormatInput"] == "gray":
+		#if cam_params["pixelFormatInput"] == "bayer_rggb8" \
+		#or cam_params["pixelFormatInput"] == "bayer_bggr8" \
+		#or cam_params["pixelFormatInput"] == "gray":
 			# Convert to RGB
-			grabResult = grabResult.Convert(PySpin.PixelFormat_RGB8, PySpin.HQ_LINEAR)
+			#grabResult = grabResult.Convert(PySpin.PixelFormat_RGB8, PySpin.HQ_LINEAR)
 
 		# Convert to Numpy array
 		img = GetImageArray(grabResult)
@@ -218,7 +218,7 @@ def ConfigureCustomImageSettings(camera, cam_params):
 		settingsConfig = True
 
 		camera.AcquisitionMode.SetValue(PySpin.AcquisitionMode_Continuous)
-		camera.BalanceWhiteAuto.SetValue(PySpin.BalanceWhiteAuto_Off)
+		#camera.BalanceWhiteAuto.SetValue(PySpin.BalanceWhiteAuto_Off)
 
 		cam_params = ConfigureFrameWidth(camera, cam_params)
 		cam_params = ConfigureFrameHeight(camera, cam_params)
@@ -228,6 +228,7 @@ def ConfigureCustomImageSettings(camera, cam_params):
 		cam_params = ConfigureGamma(camera, cam_params)
 		cam_params = ConfigureBuffer(camera, cam_params)
 		cam_params = ConfigureChunkData(camera, cam_params)
+		cam_params = ConfigureFrameRate(camera, cam_params)
 
 	except Exception as e:
 		logging.error("Caught error at cameras/flir.py ConfigureCustomImageSettings: {}".format(e))
@@ -237,6 +238,30 @@ def ConfigureCustomImageSettings(camera, cam_params):
 
 	return cam_params
 
+def ConfigureFrameRate(camera, cam_params):
+    """Test ConfigureFrameRate function."""
+    try:        
+        nodemap = camera.GetNodeMap()
+        # Enable change of acquisition framerate
+        nodeAcquisitionFramerateEnable = PySpin.CBooleanPtr(nodemap.GetNode("AcquisitionFrameRateEnable"))
+        if (not PySpin.IsAvailable(nodeAcquisitionFramerateEnable)) or (not PySpin.IsWritable(nodeAcquisitionFramerateEnable)): 
+             print('Unable to retrieve AcquisitionFrameRateEnable. Aborting...')
+             return -1
+        nodeAcquisitionFramerateEnable.SetValue(True)
+        # Set acquisition framerate
+        framerate_to_set = cam_params["frameRate"]
+        nodeAcquisitionFramerate = PySpin.CFloatPtr(nodemap.GetNode("AcquisitionFrameRate"))
+        if not PySpin.IsAvailable(nodeAcquisitionFramerate) and not PySpin.IsWritable(nodeAcquisitionFramerate):
+           print('Unable to retrieve AcquisitionFrameRate. Aborting...')
+           return -1
+       
+        nodeAcquisitionFramerate.SetValue(framerate_to_set)
+        print('Frame rate set to {}fps...'.format(framerate_to_set))
+        
+    except Exception as e:
+        logging.error("Caught exception at cameras/flir.py ConfigureFrameRate: {}".format(e))
+    
+    return cam_params
 
 def ConfigureBuffer(camera, cam_params):
 	"""

@@ -1,3 +1,10 @@
+# This is a FLIR monochrome cam Friendly version of campy by Kyle Severson (https://github.com/ksseverson57/campy).
+- This package builds off the fixes suggested in issue #12 (https://github.com/ksseverson57/campy/issues/12)
+## Specifically, this fork of the package:
+- supports FLIR monochrome cameras
+- Allows users to set frame rate directly in the config
+- Allows users to set gamma levels directly in the config
+- (TO-DO: Fix issues with max width/heights and allow parameters for ROI cropping in the config).
 # campy
 - Python package for acquiring and compressing video from multiple cameras
 
