@@ -35,6 +35,7 @@ def DefaultParams():
 	params["cameraExposureTimeInUs"] = 1500
 	params["cameraGain"] = 1
 	params["disableGamma"] = True
+	params["gammaLevel"] = 1
 
 	# Compression default parameters
 	params["ffmpegLogLevel"] = "quiet"
@@ -76,6 +77,7 @@ def AutoParams(params, default_params):
 		"chunkLengthInSec",
 		"displayFrameRate",
 		"displayDownsample",
+        "gammaLevel",
 		]
 
 	for i in range(len(range_params)):
@@ -413,6 +415,12 @@ def ParseClargs(parser):
 		dest="digitalPins",
 		type=int,
 		help="Digital pins on microcontroller board for sending TTL camera triggers.",
+	)
+	parser.add_argument(
+	"--gammaLevel",
+	dest="gammaLevel",
+	type=float,
+	help="Gamma level for the camera when gamma correction is enabled."
 	)
 
 	return parser.parse_args()
