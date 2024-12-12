@@ -1,4 +1,4 @@
-# This is a FLIR monochrome cam Friendly version of campy by Kyle Severson (https://github.com/ksseverson57/campy).
+# This is a FLIR monochrome cam friendly version of campy by Kyle Severson (https://github.com/ksseverson57/campy).
 - This package builds off the fixes suggested in issue #12 (https://github.com/ksseverson57/campy/issues/12)
 ## Specifically, this fork of the package:
 - supports FLIR monochrome cameras
