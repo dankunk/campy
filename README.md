@@ -1,10 +1,25 @@
 # This is a FLIR monochrome cam friendly version of campy by Kyle Severson (https://github.com/ksseverson57/campy).
-- This package builds off the fixes suggested in issue #12 (https://github.com/ksseverson57/campy/issues/12)
+- This package builds off the fixes suggested in issue #12 (https://github.com/ksseverson57/campy/issues/12) and adds more functionality for FLIR cameras and for chunking files post recording.
 ## Specifically, this fork of the package:
 - supports FLIR monochrome cameras
 - Allows users to set frame rate directly in the config
 - Allows users to set gamma levels directly in the config
 - (TO-DO: Fix issues with max width/heights and allow parameters for ROI cropping in the config).
+
+- Allows users to chunk files using the chunkFiles.py script. In this script the command line argument has been changes from # of frames to # of seconds. The first camera has also been set to Camera0 instead of Camera1.
+
+```
+# example usage of new chunkFiles. Chunking a 24h recording into 1h chunks:
+# first navigate to the directory where your videos are located (but above the Camera0, Camera1, directories).
+# for me this directory was since I made my own directory where campy-aquire puts videos:
+cd .\campy_videos\chunk-tests\
+
+# list the directory to make sure that you have the Camera# directories in this directory.
+ls
+
+# Then I call the chunkFiles script with a direct path, give the number of cameras, the chunk length in seconds (1h), and the file name. 
+python 'C:\Users\nalamlab\campy\campy\utils\chunkFiles.py' 1 3600 24h_test_1_1hrchunklength.mp4
+```
 # campy
 - Python package for acquiring and compressing video from multiple cameras
 
