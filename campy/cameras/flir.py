@@ -251,8 +251,15 @@ def ConfigureCustomImageSettings(camera, cam_params):
 		settingsConfig = True
 
 		camera.AcquisitionMode.SetValue(PySpin.AcquisitionMode_Continuous)
-		camera.BalanceWhiteAuto.SetValue(PySpin.BalanceWhiteAuto_Off)
 
+		# only set the white balance for color cameras (FLIR)
+		if cam_params["pixelFormatInput"] != "gray":
+			try:
+				camera.BalanceWhiteAuto.SetValue(PySpin.BalanceWhiteAuto_Off)
+			except Exception as e:
+				if cam_params["cameraDebug"]:
+					print("Warning: Could not set white balance (monochrome camera): {}".fomrat(e))
+					
 		cam_params = ConfigureFrameWidth(camera, cam_params)
 		cam_params = ConfigureFrameHeight(camera, cam_params)
 		cam_params = ConfigurePixelFormat(camera, cam_params)

@@ -4,33 +4,39 @@
 # Recording parameters
 videoFolder: "./videos"
 videoFilename: "0.mp4"
-frameRate: 80
-recTimeInSec: 10
+frameRate: 60
+recTimeInSec: 600
+#chunkLengthInSec: 600
 
 # Camera parameters
 numCams: 1
 cameraMake: "flir"
-frameWidth: 1280
-frameHeight: 1024
-pixelFormatInput: "rgb24" # "bayer_rggb8" # 
+frameWidth: 2048
+frameHeight: 1536
+pixelFormatInput: "gray" # "bayer_rggb8" # 
 pixelFormatOutput: "rgb0"
 
 # Flir settings
-cameraSettings: "UserSet0"
-cameraTrigger: "Line3"
+cameraSettings: "UserSet1"
+#cameraTrigger: "Line3"
 bufferSize: 200
-cameraExposureTimeInUs: 1500
-cameraGain: 1
-disableGamma: True
-cameraDebug: False # True # 
+cameraExposureTimeInUs: 3001
+cameraGain: 5.5
+disableGamma: True # False 
+#gammaLevel: 1.5
+cameraDebug: True # True # 
 
 # Compression parameters
-gpuID: 0                            
-gpuMake: "nvidia" # "intel" #         # "nvidia", "amd", "intel"                  
-codec: "h265"                         # "h264", "h265", "av1", or user-defined video codec
-quality: "10M" 
-preset: "slow"                       
-ffmpegLogLevel: "warning"               # "quiet", "warning", "info"
+gpuID: 0                              
+gpuMake: "nvidia"                     # "nvidia", "amd", "intel"                  
+codec: "av1"                          # "h264", "h265", "av1", or user-defined video codec
+quality: "30"
+#qualityMode: "vbr"
+qualityMode: "constqp"
+#qualityMode: "cbr"
+preset: "p7"
+
+ffmpegLogLevel: "info"               # "quiet", "warning", "info"
 # ffmpegPath: "C:/Code/ffmpeg"       # Location of ffmpeg binary if not using Anaconda
 
 # Display parameters
@@ -38,6 +44,6 @@ displayFrameCounter: 1
 displayFrameRate: 10
 
 # Trigger Parameters
-startArduino: True
-serialPort: "COM3"                    # e.g. "COM3" Win; "/dev/ttyACM0" Linux
-digitalPins: [0,1,2]
+#startArduino: True
+#serialPort: "COM3"                    # e.g. "COM3" Win; "/dev/ttyACM0" Linux
+#digitalPins: [0,1,2]

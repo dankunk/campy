@@ -35,6 +35,8 @@ def DefaultParams():
 	params["cameraExposureTimeInUs"] = 1500
 	params["cameraGain"] = 1
 	params["disableGamma"] = True
+	# delete if neccessary
+	#params["gammaLevel"] = 1
 
 	# Compression default parameters
 	params["ffmpegLogLevel"] = "quiet"
@@ -327,6 +329,12 @@ def ParseClargs(parser):
 		type=bool, 
 		help="Whether to use zero-copy of image arrays. \
 			Reduces CPU/memory overhead on Basler cameras (default: False).",
+	)
+	parser.add_argument(
+	"--gammaLevel",
+	dest="gammaLevel",
+	type=float,
+	help="Gamma level for the camera when gamma correction is enabled."
 	)
 
 	# ffmpeg arguments

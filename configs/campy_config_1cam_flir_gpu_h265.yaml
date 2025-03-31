@@ -1,0 +1,59 @@
+# This beginner-level config uses the GPU (gpuID: 0) to compress video
+# using ffmpeg's H265 codec
+
+# Recording parameters
+#videoFolder: "./videos"
+#videoFilename: "0.mp4"
+videoFolder: "./experimental_videos"
+videoFilename: "Test_24h_3-26-2024.mp4"
+frameRate: 60
+
+# Recording Times for Testing
+#recTimeInSec: 600
+#chunkLengthInSec: 600
+
+# Recording Times for experiments
+recTimeInSec: 86400 # 24h
+chunkLengthInSec: 3600 # 1h chunks
+
+
+# Camera parameters
+numCams: 1
+cameraMake: "flir"
+frameWidth: 2048
+frameHeight: 1536
+pixelFormatInput: "gray" # "bayer_rggb8" # 
+pixelFormatOutput: "rgb0"
+
+# Flir settings
+cameraSettings: "UserSet1"
+#cameraTrigger: "Line3"
+bufferSize: 200
+cameraExposureTimeInUs: 3001
+cameraGain: 5.5
+disableGamma: True # False 
+# Bug with gamma, when gamma is enabled the file size is significantly higher
+#gammaLevel: 0.2
+cameraDebug: True # True # 
+
+
+# Compression parameters
+gpuID: 0                            
+gpuMake: "nvidia" # "intel" # "amd"         # "nvidia", "amd", "intel"                  
+codec: "h265"                         # "h264", "h265", "av1", or user-defined video codec
+#quality: 29 # around 6gb per 24h
+#quality: 26 # aroung 44gb per 24h
+quality: 27 # around 18gb per 24h
+preset: "slow"                       
+ffmpegLogLevel: "info"               # "quiet", "warning", "info"
+# ffmpegPath: "C:/Code/ffmpeg"       # Location of ffmpeg binary if not using Anaconda
+
+
+# Display parameters
+displayFrameCounter: 1
+displayFrameRate: 10
+
+# Trigger Parameters
+#startArduino: True
+#serialPort: "COM3"                    # e.g. "COM3" Win; "/dev/ttyACM0" Linux
+#digitalPins: [0,1,2]
