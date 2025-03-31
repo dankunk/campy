@@ -4,8 +4,8 @@
 # Recording parameters
 #videoFolder: "./videos"
 #videoFilename: "0.mp4"
-videoFolder: "./experimental_videos"
-videoFilename: "Test_24h_3-26-2024.mp4"
+videoFolder: "./experimental_videos/Mar-31-2025/"
+videoFilename: "Training_data_Mar-31-2025.mp4"
 frameRate: 60
 
 # Recording Times for Testing
