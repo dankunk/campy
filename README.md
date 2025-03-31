@@ -1,3 +1,8 @@
+# Note: This is Daniels fork of the AV1 branch that is a working build for FLIR monochrome cameras. 
+## Please see the change logs to check what has been changed.
+### Mainly, adding some code to better handle color balancing and setting the gamma, along with editing some configs to work with our system.
+
+
 # This is an experimental branch currently being tested
 # Preparing new release (2.1.0)
 - Added AV1 encoding support for better streaming quality per bit rate (see examples) \
