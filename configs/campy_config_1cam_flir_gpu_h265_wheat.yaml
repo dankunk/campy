@@ -3,6 +3,7 @@
 
 # Before a recording make sure that the PC's clock is synced and the RTC-IOT relay are synced.
 
+# Run campy to acquire video pointing to the config file: campy-acquire .\configs\campy_config_1cam_flir_gpu_h265_wheat.yaml
 
 # Recording parameters
 #videoFolder: "./videos"
@@ -12,8 +13,8 @@
 #frameRate: 60
 
 # Experimental Recording paramters
-videoFolder: "./experimental_videos/reps/DD-Diet/agesync_2-18-26-rep8-DD/"
-videoFilename: "agesync_2-18-26-rep8-DD.mp4"
+videoFolder: "./experimental_videos/reps/DD-wheat/agesync_8-7-26-rep1-DD/"
+videoFilename: "DD-wheat_agesync_8-7-26-rep1-DD.mp4"
 frameRate: 60
 
 # Testing recording times
@@ -42,7 +43,8 @@ cameraSettings: "UserSet1"
 #cameraTrigger: "Line3"
 bufferSize: 200
 cameraExposureTimeInUs: 3001
-cameraGain: 5.5
+# higher gain due to less brightness with wheat...
+cameraGain: 6.6
 disableGamma: True # False 
 #disableGamma: False
 # Bug with gamma, when gamma is enabled the file size is significantly higher
